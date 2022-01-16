@@ -52,8 +52,16 @@ class MyApp extends StatelessWidget {
                             padding: EdgeInsets.all(15),
                             child: Column(
                               children: <Widget>[
-                                topBoxText(28, greyColor, "Good afternoon,"),
-                                topBoxText(20, blueColor, "William Holtsdalen"),
+                                topBoxText(
+                                  28,
+                                  greyColor,
+                                  "Good afternoon,",
+                                ),
+                                topBoxText(
+                                  20,
+                                  blueColor,
+                                  "William Holtsdalen",
+                                ),
                               ],
                             ),
                           ),
