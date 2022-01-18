@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'assets.dart';
+import 'main.dart';
 
 class SlideUpMenu extends StatelessWidget {
   const SlideUpMenu({
@@ -31,10 +32,17 @@ class SlideUpMenu extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Container(
-                      child: Icon(
-                        Icons.calendar_today_outlined,
-                        size: 36,
+                      child: IconButton(
+                        icon: Icon(Icons.calendar_today_outlined),
+                        iconSize: 36,
                         color: greyColor,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CalendarPage()),
+                          );
+                        },
                       ),
                     ),
                   ),

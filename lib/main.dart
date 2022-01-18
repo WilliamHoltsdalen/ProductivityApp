@@ -4,9 +4,11 @@ import 'package:flutter/rendering.dart';
 import 'widgets.dart';
 import 'assets.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(new HomePage());
 
-class MyApp extends StatelessWidget {
+class HomePage extends StatelessWidget {
+  const HomePage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -103,6 +105,20 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CalendarPage extends StatelessWidget {
+  const CalendarPage({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(fontFamily: "ArialRoundedBd"),
+      home: Scaffold(
+        body: Container(),
       ),
     );
   }
