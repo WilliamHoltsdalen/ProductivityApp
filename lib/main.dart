@@ -89,42 +89,6 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Expanded secondRowCard(double marginLeft, double marginRight, dynamic icon,
-      double iconSize, dynamic color) {
-    return Expanded(
-      flex: 5,
-      child: Container(
-        height: 225,
-        width: 196,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            side: BorderSide(
-              color: greyColor.withOpacity(0.2),
-              width: 0.5,
-            ),
-          ),
-          margin: EdgeInsets.only(left: marginLeft, right: marginRight),
-          child: FractionallySizedBox(
-            widthFactor: 1,
-            heightFactor: 1,
-            child: Padding(
-              padding: EdgeInsets.all(15),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Icon(
-                  icon,
-                  size: iconSize,
-                  color: color,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Container topBoxText(double fontSize, dynamic color, String text) {
     return Container(
       child: Align(
@@ -142,4 +106,45 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+Expanded secondRowCard(
+  double marginLeft,
+  double marginRight,
+  dynamic icon,
+  double iconSize,
+  dynamic color,
+) {
+  return Expanded(
+    flex: 5,
+    child: Container(
+      height: 225,
+      width: 196,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+          side: BorderSide(
+            color: greyColor.withOpacity(0.2),
+            width: 0.5,
+          ),
+        ),
+        margin: EdgeInsets.only(left: marginLeft, right: marginRight),
+        child: FractionallySizedBox(
+          widthFactor: 1,
+          heightFactor: 1,
+          child: Padding(
+            padding: EdgeInsets.all(15),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Icon(
+                icon,
+                size: iconSize,
+                color: color,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 }
