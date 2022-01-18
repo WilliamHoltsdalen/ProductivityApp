@@ -74,8 +74,8 @@ class HomePage extends StatelessWidget {
                   Container(
                     child: Row(
                       children: <Widget>[
-                        secondRowCard(
-                            25, 5, Icons.calendar_today_rounded, 48, greyColor),
+                        secondRowCard(25, 5, Icons.calendar_today_outlined, 48,
+                            greyColor),
                         secondRowCard(
                             5, 25, Icons.check_box_outlined, 52, greyColor),
                       ],
@@ -113,13 +113,13 @@ class HomePage extends StatelessWidget {
 class CalendarPage extends StatelessWidget {
   const CalendarPage({Key key}) : super(key: key);
 
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: "ArialRoundedBd"),
       home: Scaffold(
-        body: Container(),
-      ),
+          body: Card(
+        child: Text("Test test"),
+      )),
     );
   }
 }
