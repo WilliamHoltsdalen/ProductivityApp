@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'CalendarPage.dart';
 import 'assets.dart';
-import 'main.dart';
 
 class SlideUpMenu extends StatelessWidget {
   const SlideUpMenu({
     Key key,
   }) : super(key: key);
 
-  @override
   Widget build(BuildContext context) {
     return SlidingUpPanel(
       backdropEnabled: true,

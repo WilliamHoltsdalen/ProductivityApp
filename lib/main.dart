@@ -110,20 +110,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class CalendarPage extends StatelessWidget {
-  const CalendarPage({Key key}) : super(key: key);
-
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: "ArialRoundedBd"),
-      home: Scaffold(
-          body: Card(
-        child: Text("Test test"),
-      )),
-    );
-  }
-}
-
 Expanded secondRowCard(
   double marginLeft,
   double marginRight,
