@@ -4,11 +4,13 @@ import 'assets.dart';
 import 'dart:math' as math;
 
 var date = new DateTime.now().day;
+int monthLength =
+    DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
 
 int dateCalculation(int i, int j) {
-  int weekDayMonthStart = 5;
+  int weekDayMonthStart = 6;
+
   int temp = 0;
-  print(weekDayMonthStart);
   if ((i == 0) && j < weekDayMonthStart - 1)
     return 0;
   else if (i == 0 && j == (weekDayMonthStart - 1))
@@ -17,7 +19,11 @@ int dateCalculation(int i, int j) {
     temp = weekDayMonthStart;
   else
     temp = j;
-  return (((i * 7) + (temp + 1)) - (weekDayMonthStart - 1));
+
+  if ((((i * 7) + (temp + 1)) - (weekDayMonthStart - 1)) > monthLength)
+    return 0;
+  else
+    return (((i * 7) + (temp + 1)) - (weekDayMonthStart - 1));
 }
 
 class CalendarPage extends StatelessWidget {
@@ -80,7 +86,7 @@ class CalendarPage extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          for (int i = 0; i < 5; i++)
+                          for (int i = 0; i < 6; i++)
                             Row(
                               children: [
                                 for (int j = 0; j < 7; j++)
@@ -105,7 +111,7 @@ class CalendarPage extends StatelessWidget {
   }
 
   Expanded monthDayEntity(dynamic text, int opacity) {
-    if (text == 0 || text > 31)
+    if (text == 0)
       return Expanded(
           child: Text(
         "",
