@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/main.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:page_transition/page_transition.dart';
 import 'CalendarPage.dart';
 import 'assets.dart';
 
@@ -38,8 +40,10 @@ class SlideUpMenu extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => const CalendarPage()),
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: CalendarPage(),
+                            ),
                           );
                         },
                       ),
@@ -56,16 +60,27 @@ class SlideUpMenu extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: EdgeInsets.only(bottom: 7),
-                      child: Icon(
-                        Icons.home_outlined,
-                        size: 50,
-                        color: blueColor,
-                      ),
-                    ),
-                  ),
+                      flex: 2,
+                      child: Container(
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.home_outlined,
+                          ),
+                          iconSize: 44,
+                          color: blueColor,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: HomePage(),
+                              ),
+                              // MaterialPageRoute(
+                              //     builder: (context) => const HomePage()),
+                            );
+                          },
+                        ),
+                      )),
                   Expanded(
                     flex: 2,
                     child: Container(

@@ -30,6 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   # Added this to easily get a sliding_up_panel widget (bottom menu)
   sliding_up_panel: ^2.0.0+1
+  # Added this to easily get page-transitions
+  page_transition: "^2.0.4"
 
 dev_dependencies:
   flutter_test:

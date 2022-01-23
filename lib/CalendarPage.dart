@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 import 'widgets.dart';
 import 'assets.dart';
+import 'dart:math' as math;
+
+var date = new DateTime.now().day;
+
+int dateCalculation(int i, int j) {
+  int weekDayMonthStart = 5;
+  int temp = 0;
+  print(weekDayMonthStart);
+  if ((i == 0) && j < weekDayMonthStart - 1)
+    return 0;
+  else if (i == 0 && j == (weekDayMonthStart - 1))
+    temp = weekDayMonthStart - 1;
+  else if (i == 0 && j == weekDayMonthStart)
+    temp = weekDayMonthStart;
+  else
+    temp = j;
+  return (((i * 7) + (temp + 1)) - (weekDayMonthStart - 1));
+}
 
 class CalendarPage extends StatelessWidget {
   const CalendarPage({Key key}) : super(key: key);
@@ -9,146 +27,136 @@ class CalendarPage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "ArialRoundedBd"),
       home: Scaffold(
-          body: Stack(children: <Widget>[
-        ListView(
+        body: Stack(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(left: 50, top: 25, right: 50, bottom: 25),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: 35,
-                      margin: EdgeInsets.only(left: 10, right: 10),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(70, 77, 255, 210),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Day",
-                          style: TextStyle(
-                            color: greyColor,
+            ListView(
+              children: <Widget>[
+                Container(
+                  margin:
+                      EdgeInsets.only(left: 50, top: 25, right: 50, bottom: 25),
+                  child: Row(
+                    children: <Widget>[
+                      modeButton("Day", 70),
+                      modeButton("Week", 70),
+                      modeButton("Month", 255)
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 25, top: 5),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        "January 2022",
+                        style: TextStyle(color: greyColor, fontSize: 30),
+                      ),
+                      Transform.rotate(
+                        angle: -math.pi / 2,
+                        child: IconButton(
+                          color: greyColor,
+                          icon: Icon(
+                            Icons.arrow_back_ios_outlined,
                           ),
+                          onPressed: () => {},
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  Expanded(
-                    child: Container(
-                      height: 35,
-                      margin: EdgeInsets.only(left: 10, right: 10),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(70, 77, 255, 210),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Week",
-                          style: TextStyle(
-                            color: greyColor,
-                          ),
-                        ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 25, right: 25, top: 35),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: <Widget>[
+                          monthDayEntity("M", 150),
+                          monthDayEntity("T", 150),
+                          monthDayEntity("W", 150),
+                          monthDayEntity("T", 150),
+                          monthDayEntity("F", 150),
+                          monthDayEntity("S", 150),
+                          monthDayEntity("S", 150),
+                        ],
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 35,
-                      margin: EdgeInsets.only(left: 10, right: 10),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 77, 255, 210),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Month",
-                          style: TextStyle(
-                            color: greyColor,
-                          ),
-                        ),
+                      Column(
+                        children: [
+                          for (int i = 0; i < 5; i++)
+                            Row(
+                              children: [
+                                for (int j = 0; j < 7; j++)
+                                  monthDayEntity(
+                                    dateCalculation(i, j),
+                                    255,
+                                  ),
+                              ],
+                            ),
+                        ],
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Container(
-              margin: EdgeInsets.only(left: 25, top: 5),
-              child: Text(
-                "January 2022",
-                style: TextStyle(color: greyColor, fontSize: 30),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 25, right: 0, top: 35),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      "M",
-                      style: TextStyle(
-                          color: Color.fromARGB(150, 112, 112, 112),
-                          fontSize: 24),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "T",
-                      style: TextStyle(
-                          color: Color.fromARGB(150, 112, 112, 112),
-                          fontSize: 24),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "W",
-                      style: TextStyle(
-                          color: Color.fromARGB(150, 112, 112, 112),
-                          fontSize: 24),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "T",
-                      style: TextStyle(
-                          color: Color.fromARGB(150, 112, 112, 112),
-                          fontSize: 24),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "F",
-                      style: TextStyle(
-                          color: Color.fromARGB(150, 112, 112, 112),
-                          fontSize: 24),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "S",
-                      style: TextStyle(
-                          color: Color.fromARGB(150, 112, 112, 112),
-                          fontSize: 24),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "S",
-                      style: TextStyle(
-                          color: Color.fromARGB(150, 112, 112, 112),
-                          fontSize: 24),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              child: SlideUpMenu(),
-            ),
+            SlideUpMenu(),
           ],
-        )
-      ])),
+        ),
+      ),
+    );
+  }
+
+  Expanded monthDayEntity(dynamic text, int opacity) {
+    if (text == 0 || text > 31)
+      return Expanded(
+          child: Text(
+        "",
+        textAlign: TextAlign.center,
+      ));
+    else if (text == date)
+      return Expanded(
+          child: Container(
+        decoration: BoxDecoration(
+            shape: BoxShape.circle, color: Color.fromARGB(75, 112, 112, 112)),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 15, top: 15),
+          child: Text(
+            text.toString(),
+            style: TextStyle(
+                color: Color.fromARGB(opacity, 112, 112, 112), fontSize: 24),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ));
+    else
+      return Expanded(
+          child: Padding(
+        padding: EdgeInsets.only(bottom: 15, top: 15),
+        child: Text(
+          text.toString(),
+          style: TextStyle(
+              color: Color.fromARGB(opacity, 112, 112, 112), fontSize: 24),
+          textAlign: TextAlign.center,
+        ),
+      ));
+  }
+
+  Expanded modeButton(String text, int opacity) {
+    return Expanded(
+      child: Container(
+        height: 35,
+        margin: EdgeInsets.only(left: 10, right: 10),
+        decoration: BoxDecoration(
+            color: Color.fromARGB(opacity, 77, 255, 210),
+            borderRadius: BorderRadius.circular(12)),
+        child: TextButton(
+          onPressed: () {},
+          child: Text(
+            text,
+            style: TextStyle(
+              color: greyColor,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
