@@ -9,8 +9,8 @@ int monthLength =
 
 int dateCalculation(int i, int j) {
   int weekDayMonthStart = 6;
-
   int temp = 0;
+
   if ((i == 0) && j < weekDayMonthStart - 1)
     return 0;
   else if (i == 0 && j == (weekDayMonthStart - 1))
@@ -103,7 +103,10 @@ class CalendarPage extends StatelessWidget {
                 ),
               ],
             ),
-            SlideUpMenu(),
+            SlideUpMenu(
+              pageName: "CalendarPage",
+              backDropColor: Colors.white,
+            ),
           ],
         ),
       ),

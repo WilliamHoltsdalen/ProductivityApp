@@ -5,18 +5,28 @@ import 'package:page_transition/page_transition.dart';
 import 'CalendarPage.dart';
 import 'assets.dart';
 
+Color colorPageIcon(String pageIndex, String iconIndex) {
+  if (pageIndex == iconIndex) {
+    return blueColor;
+  } else {
+    return greyColor;
+  }
+}
+
 class SlideUpMenu extends StatelessWidget {
-  const SlideUpMenu({
-    Key key,
-  }) : super(key: key);
+  SlideUpMenu({@required this.backDropColor, this.pageName});
+  final Color backDropColor;
+  final String pageName;
 
   Widget build(BuildContext context) {
     return SlidingUpPanel(
       backdropEnabled: true,
       backdropOpacity: 0.5,
-      backdropColor: greenColor,
+      backdropColor: backDropColor,
       maxHeight: 400,
       minHeight: slideUpHeight,
+      // parallaxEnabled: true,
+      // parallaxOffset: 0.5,
       collapsed: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -36,7 +46,7 @@ class SlideUpMenu extends StatelessWidget {
                       child: IconButton(
                         icon: Icon(Icons.calendar_today_outlined),
                         iconSize: 36,
-                        color: greyColor,
+                        color: colorPageIcon(pageName, "CalendarPage"),
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -55,7 +65,7 @@ class SlideUpMenu extends StatelessWidget {
                       child: Icon(
                         Icons.check_box_outlined,
                         size: 42,
-                        color: greyColor,
+                        color: colorPageIcon(pageName, "ToDoPage"),
                       ),
                     ),
                   ),
@@ -67,7 +77,7 @@ class SlideUpMenu extends StatelessWidget {
                             Icons.home_outlined,
                           ),
                           iconSize: 44,
-                          color: blueColor,
+                          color: colorPageIcon(pageName, "HomePage"),
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -87,7 +97,7 @@ class SlideUpMenu extends StatelessWidget {
                       child: Icon(
                         Icons.info_outlined,
                         size: 40,
-                        color: greyColor,
+                        color: colorPageIcon(pageName, "ThoughtsPage"),
                       ),
                     ),
                   ),

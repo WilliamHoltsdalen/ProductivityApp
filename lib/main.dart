@@ -84,7 +84,10 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            SlideUpMenu(),
+            SlideUpMenu(
+              pageName: "HomePage",
+              backDropColor: greenColor,
+            ),
           ],
         ),
       ),
