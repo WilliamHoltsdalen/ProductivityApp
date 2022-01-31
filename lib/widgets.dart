@@ -14,7 +14,7 @@ Color colorPageIcon(String pageIndex, String iconIndex) {
 }
 
 class SlideUpMenu extends StatelessWidget {
-  SlideUpMenu({@required this.backDropColor, this.pageName});
+  SlideUpMenu({required this.backDropColor, required this.pageName});
   final Color backDropColor;
   final String pageName;
 

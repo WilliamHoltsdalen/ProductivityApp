@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'widgets.dart';
 import 'assets.dart';
-import 'dart:math' as math;
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 var date = new DateTime.now().day;
 int monthLength =
@@ -26,9 +26,30 @@ int dateCalculation(int i, int j) {
     return (((i * 7) + (temp + 1)) - (weekDayMonthStart - 1));
 }
 
-class CalendarPage extends StatelessWidget {
-  const CalendarPage({Key key}) : super(key: key);
+class CalendarPage extends StatefulWidget {
+  @override
+  _CalendarPageState createState() => _CalendarPageState();
+}
 
+class _CalendarPageState extends State<CalendarPage> {
+  String? selectedValue;
+
+  List<String> items = [
+    'January 2022',
+    'February 2022',
+    'March 2022',
+    'April 2022',
+    'May 2022',
+    'June 2022',
+    'July 2022',
+    'August 2022',
+    'September 2022',
+    'October 2022',
+    'November 2022',
+    'December 2022'
+  ];
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: "ArialRoundedBd"),
@@ -52,18 +73,41 @@ class CalendarPage extends StatelessWidget {
                   margin: EdgeInsets.only(left: 25, top: 5),
                   child: Row(
                     children: <Widget>[
-                      Text(
-                        "January 2022",
-                        style: TextStyle(color: greyColor, fontSize: 30),
-                      ),
-                      Transform.rotate(
-                        angle: -math.pi / 2,
-                        child: IconButton(
-                          color: greyColor,
-                          icon: Icon(
-                            Icons.arrow_back_ios_outlined,
+                      DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          hint: Text('Current Month'),
+                          style: TextStyle(
+                              color: greyColor,
+                              fontSize: 30,
+                              fontFamily: "ArialRoundedBd"),
+                          value: selectedValue,
+                          icon: Icon(Icons.keyboard_arrow_down),
+                          iconSize: 40,
+                          items: items
+                              .map(
+                                (item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(item),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              selectedValue = value as String;
+                            });
+                          },
+                          itemPadding:
+                              EdgeInsets.only(left: 15, right: 15, top: 10),
+                          dropdownMaxHeight: 250,
+                          dropdownWidth: 270,
+                          dropdownPadding: null,
+                          dropdownDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          onPressed: () => {},
+                          scrollbarRadius: Radius.circular(40),
+                          scrollbarThickness: 5,
+                          scrollbarAlwaysShow: true,
+                          offset: Offset(-5, 0),
                         ),
                       ),
                     ],
